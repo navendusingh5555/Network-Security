@@ -86,7 +86,7 @@ class DataIngestion:
 
             logging.info(f"Exporting train and test file path.")
 
-            train_set.to_csv(self.data_ingestion_config.testing_file_path, index = False, header = True)
+            train_set.to_csv(self.data_ingestion_config.training_file_path, index = False, header = True)
 
             test_set.to_csv(self.data_ingestion_config.testing_file_path, index = False, header = True)
 
