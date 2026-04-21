@@ -91,6 +91,8 @@ class DataValidation:
 
             write_yaml_file(file_path = drift_report_file_path,content=report)
 
+            return status
+
         except Exception as e:
             raise NetworkSecurityException(e,sys)
         
@@ -139,33 +141,4 @@ class DataValidation:
         except Exception as e:
             raise NetworkSecurityException(e,sys)
 
-
-
-
-
-
-
-    
-    
-
-
-    
-                
-            
-
-            
-
-            
-            
-
-            
-
-            
-
-
-        
-
-
-    
-    
     
