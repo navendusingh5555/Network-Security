@@ -6,6 +6,7 @@ from NetworkSecurity.logging.logger import logging
 
 from NetworkSecurity.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
 from NetworkSecurity.entity.config_entity import ModelTrainerConfig
+#from NetworkSecurity.entity.config_entity import MflTrainerConfig
 
 from NetworkSecurity.utils.main_utils.utils import save_object, load_object
 from NetworkSecurity.utils.main_utils.utils import load_numpy_array_data, evaluate_models
@@ -23,6 +24,11 @@ from sklearn.ensemble import (
 )
 from xgboost import XGBClassifier
 
+import mlflow 
+# Add this line before starting any runs
+#mlflow.set_tracking_uri("file:///Users/navendusingh/Desktop/Network%20Security%20System/mlruns")
+
+
 
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig, data_transformation_artifact: DataTransformationArtifact):
@@ -33,6 +39,19 @@ class ModelTrainer:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
         
+    
+
+
+    def track_mlflow(self, best_model, classification_metric):
+        with mlflow.start_run():
+            f1_score = classification_metric.f1_score
+            precision_score = classification_metric.precision_score
+            recall_score = classification_metric.recall_score
+
+            mlflow.log_metric("f1_score", f1_score)
+            mlflow.log_metric("precision_score", precision_score)
+            mlflow.log_metric("recall_score", recall_score)
+            mlflow.sklearn.log_model(sk_model=best_model, artifact_path="model")
 
     
     def train_model(self, X_train, y_train, X_test, y_test):
@@ -97,8 +116,14 @@ class ModelTrainer:
         y_train_pred = best_model.predict(X_train)
         classification_train_metric = get_classification_score(y_true = y_train, y_pred = y_train_pred)
 
+        ### Track the experiment with MLFLOW
+        self.track_mlflow(best_model, classification_train_metric)
+        
+
         y_test_pred = best_model.predict(X_test)
         classification_test_metric = get_classification_score(y_true = y_test, y_pred = y_test_pred)
+
+        self.track_mlflow(best_model, classification_test_metric)
 
 
         preprocessor = load_object(file_path = self.data_transformation_artifact.transformed_object_file_path)
@@ -107,7 +132,7 @@ class ModelTrainer:
         os.makedirs(model_dir_path, exist_ok = True)
 
         Network_Model = NetworkModel(preprocessor = preprocessor, model = best_model)
-        save_object(self.model_trainer_config.trained_model_file_path, obj = NetworkModel)
+        save_object(self.model_trainer_config.trained_model_file_path, obj = Network_Model)
 
         ## Model Trainer Artifact
         model_trainer_artifact = ModelTrainerArtifact(trained_model_file_path = self.model_trainer_config.trained_model_file_path,

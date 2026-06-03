@@ -11,4 +11,5 @@ scipy
 dill
 pyaml
 xgboost
+mlflow
 #-e .
