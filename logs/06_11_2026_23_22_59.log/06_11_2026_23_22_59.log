@@ -1,0 +1,45 @@
+[2026-06-11 23:23:00,277] 164 numexpr.utils - INFO - NumExpr defaulting to 10 threads.
+[2026-06-11 23:23:17,777] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 200 OK"
+[2026-06-11 23:23:18,765] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/access_token "HTTP/1.1 200 OK"
+[2026-06-11 23:23:19,663] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-11 23:23:19,666] 107 dagshub - INFO - Accessing as navendusingh5555
+[2026-06-11 23:23:20,621] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/navendusingh5555/Network-Security "HTTP/1.1 200 OK"
+[2026-06-11 23:23:21,551] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-11 23:23:21,554] 107 dagshub - INFO - Initialized MLflow to track repo "navendusingh5555/Network-Security"
+[2026-06-11 23:23:21,554] 107 dagshub - INFO - Repository navendusingh5555/Network-Security initialized!
+[2026-06-11 23:23:21,555] 21 root - INFO - Initiate the data ingestion
+[2026-06-11 23:23:24,359] 79 root - INFO - Performed train test split on the dataframe.
+[2026-06-11 23:23:24,359] 81 root - INFO - Exited split_data_as_train_test method of DataIngestion Class.
+[2026-06-11 23:23:24,359] 87 root - INFO - Exporting train and test file path.
+[2026-06-11 23:23:24,380] 93 root - INFO - Exported train and test file path
+[2026-06-11 23:23:24,380] 23 root - INFO - Data Initiation Completed
+[2026-06-11 23:23:24,382] 28 root - INFO - Initiate the data Validation
+[2026-06-11 23:23:24,389] 32 root - INFO - Required number of columns:2
+[2026-06-11 23:23:24,389] 33 root - INFO - Data frame has columns:31
+[2026-06-11 23:23:24,389] 32 root - INFO - Required number of columns:2
+[2026-06-11 23:23:24,389] 33 root - INFO - Data frame has columns:31
+[2026-06-11 23:23:24,447] 30 root - INFO - Data Validation Completed
+[2026-06-11 23:23:24,447] 35 root - INFO - Initializes Data Transformation.
+[2026-06-11 23:23:24,447] 67 root - INFO - Entered initiate_data_transformation method of DataTransformation class.
+[2026-06-11 23:23:24,447] 70 root - INFO - Starting data transformation.
+[2026-06-11 23:23:24,447] 74 root - INFO - Reading train and test data from validation artifact
+[2026-06-11 23:23:24,453] 80 root - INFO - Splitting train data into target feature and input feature
+[2026-06-11 23:23:24,454] 86 root - INFO - Splitting test data into target feature and input feature
+[2026-06-11 23:23:24,454] 90 root - INFO - Splitting of DataFrame completed successfully.
+[2026-06-11 23:23:24,454] 93 root - INFO - Entered Transformation
+[2026-06-11 23:23:24,454] 52 root - INFO - Entered get_data_transformer_object method of DataTransformation class.
+[2026-06-11 23:23:24,454] 56 root - INFO - Initialize KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2026-06-11 23:23:24,454] 96 root - INFO - Applying fit_transform
+[2026-06-11 23:23:24,456] 103 root - INFO - Concatinating transformed input feature with target feature
+[2026-06-11 23:23:24,456] 108 root - INFO - Saving Final Train, Test array and Preprocessor object.
+[2026-06-11 23:23:24,457] 57 root - INFO - Entered the save_object method of main_utils class.
+[2026-06-11 23:23:24,458] 63 root - INFO - Exited the save_object method of main_utils class.
+[2026-06-11 23:23:24,458] 57 root - INFO - Entered the save_object method of main_utils class.
+[2026-06-11 23:23:24,458] 63 root - INFO - Exited the save_object method of main_utils class.
+[2026-06-11 23:23:24,458] 117 root - INFO - Preparing Artifacts.
+[2026-06-11 23:23:24,458] 37 root - INFO - Data Transformation Completed.
+[2026-06-11 23:23:24,458] 40 root - INFO - Model Training Started.
+[2026-06-11 23:23:24,458] 160 root - INFO - Reading data from Transformation Artifact.
+[2026-06-11 23:23:24,459] 164 root - INFO - Loading train array and test array.
+[2026-06-11 23:23:24,459] 168 root - INFO - Splitting into train and test.
+[2026-06-11 23:35:28,536] 868 urllib3.connectionpool - WARNING - Retrying (Retry(total=6, connect=7, read=6, redirect=7, status=7)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='dagshub.com', port=443): Read timed out. (read timeout=120)")': /navendusingh5555/Network-Security.mlflow/api/2.0/mlflow/runs/create

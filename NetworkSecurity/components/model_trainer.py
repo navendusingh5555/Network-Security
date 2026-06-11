@@ -25,6 +25,10 @@ from sklearn.ensemble import (
 from xgboost import XGBClassifier
 
 import mlflow 
+
+import dagshub
+dagshub.init(repo_owner='navendusingh5555', repo_name='Network-Security', mlflow=True)
+
 # Add this line before starting any runs
 #mlflow.set_tracking_uri("file:///Users/navendusingh/Desktop/Network%20Security%20System/mlruns")
 

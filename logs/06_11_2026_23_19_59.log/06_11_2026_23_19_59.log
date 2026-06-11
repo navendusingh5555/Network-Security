@@ -1,0 +1,2 @@
+[2026-06-11 23:19:59,829] 164 numexpr.utils - INFO - NumExpr defaulting to 10 threads.
+[2026-06-11 23:20:03,400] 1025 httpx - INFO - HTTP Request: POST https://dagshub.com/login/oauth/middleman "HTTP/1.1 502 Bad Gateway"
